@@ -1,0 +1,31 @@
+<h1>Modifier ton évènement :</h1>
+
+<%= form_tag(event_path(@event.id), method: 'patch') do %>
+<%= label_tag('title', 'Titre', class:"") %>
+<%= text_field_tag('title', @event.title, class:"") %>
+<%= label_tag('description', 'Description', class:"") %>
+<%= text_area_tag('description', @event.description, class:"") %>
+<%= label_tag('price', 'Prix', class:"") %>
+<%= text_field_tag('price', @event.price, class:"") %>
+<%= label_tag('location', 'Lieu', class:"") %>
+<%= text_field_tag('location', @event.location, class:"") %>
+<%= label_tag('event', 'Date de début', class:"") %>
+<%= datetime_select("event", "start_date", value: @event.start_date) %>
+<%= label_tag('duration', 'Durée', class:"") %>
+<%= text_field_tag('duration', @event.duration, class:"") %>
+
+<%= submit_tag('Editer', class:"") %>
+<% end %>
+<%= button_to "Supprimer", event_path(@event), data: {confirm: 'Es-tu sûr(e) ?'}, method: :delete %>
+
+<% if @event.errors.any? %>
+  <div class="alert alert-warning mt-2" role="alert">
+    <p>Nous navons pas réussi à modifier l'event pour la (ou les) raison(s) suivante(s) :</p>
+    <ul>
+      <% @event.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+    <p>Merci de réessayer</p>
+  </div>
+<% end %>

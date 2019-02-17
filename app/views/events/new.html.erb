@@ -1,0 +1,30 @@
+<h1>Nouvel event</h1>
+
+<%= form_tag(events_path, method: 'post', id: "new_event", class:"") do %>
+<%= label_tag('title', 'Titre', class:"") %>
+<%= text_field_tag('title', nil, class:"") %>
+<%= label_tag('description', 'Description', class:"") %>
+<%= text_area_tag('description', nil, class:"") %>
+<%= label_tag('price', 'Prix', class:"") %>
+<%= text_field_tag('price', nil, class:"") %>
+<%= label_tag('location', 'Lieu', class:"") %>
+<%= text_field_tag('location', nil, class:"") %>
+<%= label_tag('start_date', 'Date de début', class:"") %>
+<%= datetime_select("start_date", "start_date", class:"") %>
+<%= label_tag('duration', 'Durée', class:"") %>
+<%= text_field_tag('duration', 0, class:"") %>
+
+<%= submit_tag('Créer', class:"") %>
+<% end -%>
+
+<% if @event.errors.any? %>
+  <div class="alert alert-warning mt-2" role="alert">
+    <p>Nous navons pas réussi à créer d'event pour la (ou les) raison(s) suivante(s) :</p>
+    <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+    <p>Merci de réessayer</p>
+  </div>
+<% end %>

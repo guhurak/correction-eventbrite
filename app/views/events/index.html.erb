@@ -1,0 +1,12 @@
+<h1>Voici tous les évenements passé et à venir ! :</h1>
+
+
+<div class="card-deck">
+	<% @events.each do |event| %>
+	<div class="col-3">
+		<div class="card mb-4">
+			<%= link_to "#{event.title}", event_path(event.id), class: "card-title"%>
+		</div>
+	</div>
+	<% end %>
+</div>

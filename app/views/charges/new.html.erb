@@ -1,0 +1,25 @@
+<% if @attendance == nil %>
+
+<%= form_tag event_attendances_path, method: 'post' do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Amount: $<%= @event.price %></span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="A month's subscription"
+          data-amount="<%= @event.price*100 %>"
+          data-locale="auto"></script>
+<% end %>
+
+<% else %>
+<p>Tu es déjà inscrit</p>
+<%= link_to 'Accueil', root_path %>
+<% end %>
