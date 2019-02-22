@@ -1,0 +1,23 @@
+
+	<nav class="navbar">
+		<div class="d-flex f-middle">	
+      <%= link_to "Accueil", root_path, class:'navbar-brand' %>
+      <ul class="d-flex f-middle nav-list">
+        <li class="nav-item"><%= link_to "Créer un event", new_event_path, class:"nav-link" %></li>
+      </ul>
+    </div>
+    <div>  
+      <div class="dropdown f-right-item">
+        <button class="dropdown-toggler btn btn-secondary">User</button>
+        <div class="dropdown-menu secondary f-middle f-column">
+          <% if user_signed_in? %>
+          <%= link_to "Profil", user_path(current_user.id), class:"dropdown-item" %>
+          <%= link_to "Deconnexion", destroy_user_session_path, method: :delete, class:"dropdown-item"%>
+          <% else %>
+          <%= link_to "Connexion", new_user_session_path, class:"dropdown-item" %>
+          <%= link_to "Inscription", new_user_registration_path, class:"dropdown-item" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+	</nav>

@@ -22,13 +22,16 @@ class EventsController < ApplicationController
 
 
 	def create
-		event = Event.new(title: params[:title], description: params[:description], user: current_user, start_date: convert_date(params[:start_date]), location: params[:location], duration: params[:duration], price: params[:price])
+		@event = Event.new(title: params[:title], description: params[:description], user: current_user, start_date: params[:start_date], location: params[:location], duration: params[:duration], price: params[:price])
 
 		puts params
 
-		if event.save
+		if @event.errors.any?
+			render :new
+		end
+		if @event.save
 			redirect_to root_path
-			flash[:success] = "#{event.title} a bien été créé."
+			flash[:success] = "#{@event.title} a bien été créé."
 		else
 			flash[:danger] = "Un problème est survenu."
 			render :new

@@ -4,17 +4,15 @@
 <p>Nom : <%= @user.last_name %></p>
 <p>Email : <%= @user.email %></p>
 <p>Description : <%= @user.description %></p>
-<%= link_to "Editer les informations personnelles", edit_user_registration_path(@user.id) %>
-<%= link_to "Editer le profil", edit_user_path(@user.id) %>
+<div class="d-flex f-middle">
+<%= link_to "Editer les informations personnelles", edit_user_registration_path(@user.id), class:"btn btn-info" %>
+<%= link_to "Editer le profil", edit_user_path(@user.id), class:"btn btn-info" %>
+</div>
 
-<h2>Tout ses évènements :</h2>
+<h2>Tout tes évènements :</h2>
 
-<div class="card-deck">
+<div class="grid">
 	<% @events.each do |event| %>
-	<div class="col-3">
-		<div class="card mb-4">
-			<%= link_to "#{event.title}", event_path(event.id), class: "card-title"%>
-		</div>
-	</div>
+	<%= render "events/event-card", locals = {event: event} %>
 	<% end %>
 </div>

@@ -1,0 +1,10 @@
+<div class="col-3">
+		<div class="card">
+			<div class="card-header">
+				<%= link_to "#{event.title}", event_path(event.id), class: "card-title"%>	
+			</div>
+			<div class="card-body">
+				<p class="card-text"><%= event.description %></p>
+			</div>
+		</div>
+	</div>
