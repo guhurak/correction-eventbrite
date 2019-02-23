@@ -44,7 +44,7 @@ class EventsController < ApplicationController
 		@event = Event.find(params[:id])
 		check_access_authorization(@event.user)
 
-		if @event.update(title: params[:title], description: params[:description], start_date: convert_date(params[:event]), duration: params[:duration], location: params[:location], price: params[:price])
+		if @event.update(title: params[:title], description: params[:description], start_date: params[:start_date], duration: params[:duration], location: params[:location], price: params[:price])
 			redirect_to events_path(@event.id)
 			flash[:success] = "#{@event.title} a bien été mis à jour."
 		else

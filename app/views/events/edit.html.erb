@@ -10,7 +10,7 @@
 <%= label_tag('location', 'Lieu', class:"") %>
 <%= text_field_tag('location', @event.location, class:"") %>
 <%= label_tag('event', 'Date de début', class:"") %>
-<%= datetime_select("event", "start_date", value: @event.start_date) %>
+<%= datetime_field_tag("start_date", @event.start_date) %>
 <%= label_tag('duration', 'Durée', class:"") %>
 <%= text_field_tag('duration', @event.duration, class:"") %>
 
@@ -19,7 +19,7 @@
 <%= button_to "Supprimer", event_path(@event), data: {confirm: 'Es-tu sûr(e) ?'}, method: :delete %>
 
 <% if @event.errors.any? %>
-  <div class="alert alert-warning mt-2" role="alert">
+  <div class="alert warning" role="alert">
     <p>Nous navons pas réussi à modifier l'event pour la (ou les) raison(s) suivante(s) :</p>
     <ul>
       <% @event.errors.full_messages.each do |message| %>

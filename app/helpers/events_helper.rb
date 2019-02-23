@@ -10,8 +10,4 @@ module EventsHelper
   		end
   	end
   end
-
-  def convert_date(datetime)
-    DateTime.strptime(datetime.values.join(" "), '%Y %m %d %H %M')
-  end
 end
